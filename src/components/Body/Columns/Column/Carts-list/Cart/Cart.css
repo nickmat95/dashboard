@@ -1,0 +1,7 @@
+.cart {
+	float: left;
+	width: 97%;
+	margin: 5px 0 0;
+	padding: 3px;
+	border: 1px solid black;
+}

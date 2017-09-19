@@ -1,0 +1,7 @@
+.editTitle {
+	float: right;
+}
+
+.editTitle button {
+	cursor: pointer;
+}

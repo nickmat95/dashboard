@@ -1,13 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Columns from './Columns/Columns.jsx';
-import './Body.css';
+import './Edit-text-button.css';
 
-class Body extends React.Component {
+class EditTextButton extends React.Component {
 	render() {
 	    return (
-	    	<div className="container">
-	    		<Columns />
+	    	<div className="editText">
+	    		<button type="button">edit</button>
 	    	</div>
 	    );
 	}
@@ -20,4 +19,4 @@ export default connect(
 	dispatch => ({
 
 	})
-)(Body);
+)(EditTextButton);

@@ -1,0 +1,8 @@
+.text {
+	float: left;
+	width: 73%;
+}
+
+.text input {
+	width: 100%;
+}

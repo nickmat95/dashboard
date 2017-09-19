@@ -1,0 +1,10 @@
+.addCart {
+	float: left;
+	width: 100%;
+	padding: 5px 0 0;
+}
+
+.addCart button {
+	width: 100%;
+	cursor: pointer;
+}

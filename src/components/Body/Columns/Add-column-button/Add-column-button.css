@@ -1,0 +1,11 @@
+.buttonColumn {
+	display: inline-block;
+    padding: 105px 11%;
+    margin: 3% 3% 0 0;
+}
+
+.buttonColumn button {
+	display: block;
+	float: left;
+	cursor: pointer;
+}

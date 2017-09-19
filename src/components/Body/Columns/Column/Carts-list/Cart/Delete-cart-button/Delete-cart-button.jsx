@@ -1,13 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Columns from './Columns/Columns.jsx';
-import './Body.css';
+import './Delete-cart-button.css';
 
-class Body extends React.Component {
+class DeleteCartButton extends React.Component {
 	render() {
 	    return (
-	    	<div className="container">
-	    		<Columns />
+	    	<div className="deleteCart">
+	    		<button type="button">X</button>
 	    	</div>
 	    );
 	}
@@ -20,4 +19,4 @@ export default connect(
 	dispatch => ({
 
 	})
-)(Body);
+)(DeleteCartButton);
