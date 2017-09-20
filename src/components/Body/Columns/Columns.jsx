@@ -28,20 +28,26 @@ class Columns extends React.Component {
 	    this.findColumn = this.findColumn.bind(this);
 
 	    this.state = {
-	      columns: [{
-	        id: 1,
-	      }, {
-	        id: 2,
-	      }, {
-	        id: 3,
-	      }, {
-	        id: 4,
-	      }, {
-	        id: 5,
-	      }],
+	      columns: [],
 	    };
 	}
 
+	componentDidMount() {
+
+		let storageColumns = (!this.props.list[0]) ? JSON.parse(localStorage.getItem('columns')) : this.props.list;
+
+		let columnsList = (storageColumns === null || !storageColumns[0]) ? [] : storageColumns;
+
+		this.setState({
+			columns: columnsList,
+		});
+	}
+
+	componentWillReceiveProps(nextProps) {
+		this.setState({
+			columns: (nextProps.list !== this.props.list) ? nextProps.list : this.state.columns,
+		});
+	}
 
 	moveColumn(id, atIndex) {
 		const { column, index } = this.findColumn(id);
@@ -66,15 +72,17 @@ class Columns extends React.Component {
 	}
 
 	render() {
+		
 		const { connectDropTarget } = this.props;
     	const { columns } = this.state;
-
+    	
 	    return connectDropTarget(
 	    	<div className="columns">
 	    	{columns.map(column => (
 	    		<Column
 	    			key={column.id}
 		            id={column.id}
+		            title={column.title}
 		            moveColumn={this.moveColumn}
 		            findColumn={this.findColumn}
 	    		/>
@@ -87,7 +95,7 @@ class Columns extends React.Component {
 
 export default connect(
 	state => ({
-
+		list: state.getColumnsList
 	}),
 	dispatch => ({
 

@@ -56,7 +56,7 @@ class Column extends React.Component {
 		const { isDragging, connectDragSource, connectDropTarget } = this.props;
 	    return connectDragSource(connectDropTarget(
 	    	<div className="column">
-	    		<DeleteColumnButton />
+	    		<DeleteColumnButton columnId={this.props.id} />
 	    		<ColumnTitle />
 	    		<CartsList />
 	    		<AddCartButton />

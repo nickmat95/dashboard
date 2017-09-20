@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import test from './test.js';
+import getColumnsList from './get-columns-list.js';
 
 export default combineReducers({
-	test
+	getColumnsList
 });

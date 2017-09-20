@@ -1,8 +1,8 @@
 const initialState = [];
 
-export default function test(state = initialState, action) {
+export default function getColumnsList(state = initialState, action) {
   switch(action.type) {
-  	case 'TEST':
+  	case 'GET_COLUMNS':
   		return action.payload;
   		break;
   }
