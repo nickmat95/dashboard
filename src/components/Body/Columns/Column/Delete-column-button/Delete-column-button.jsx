@@ -12,7 +12,7 @@ class DeleteColumnButton extends React.Component {
 
 	deleteColumn() {
 		let storageColumns = JSON.parse(localStorage.getItem('columns'));
-		let newColumnsList = storageColumns.filter((column) => column.id != this.props.columnId);
+		let newColumnsList = storageColumns.filter((column) => column.id !== Number(this.props.columnId));
 
 		let serialColumns = JSON.stringify(newColumnsList); 
 

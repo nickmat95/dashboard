@@ -1,8 +1,8 @@
-.deleteCart {
+.deleteCard {
 	float: left;
 	margin: 0 0 0 5px;
 }
 
-.deleteCart button {
+.deleteCard button {
 	cursor: pointer;
 }

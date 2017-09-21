@@ -83,6 +83,7 @@ class Columns extends React.Component {
 	    			key={column.id}
 		            id={column.id}
 		            title={column.title}
+		            cardsList={column.cards}
 		            moveColumn={this.moveColumn}
 		            findColumn={this.findColumn}
 	    		/>

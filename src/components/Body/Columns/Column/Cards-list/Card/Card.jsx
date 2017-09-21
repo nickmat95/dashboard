@@ -2,16 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Text from './Text/Text.jsx';
 import EditTextButton from './Edit-text-button/Edit-text-button.jsx';
-import DeleteCartButton from './Delete-cart-button/Delete-cart-button.jsx';
+import DeleteCardButton from './Delete-card-button/Delete-card-button.jsx';
 import { DragSource, DropTarget } from 'react-dnd';
 import ItemTypes from '../../../../../../item-types.js';
-import './Cart.css';
+import './Card.css';
 
-const cartSource = {
+const cardSource = {
 	beginDrag(props) {
 	    return {
 	    	id: props.id,
-	    	originalIndex: props.findCart(props.id).index,
+	    	originalIndex: props.findCard(props.id).index,
 	    };
 	},
 
@@ -20,12 +20,12 @@ const cartSource = {
 	    const didDrop = monitor.didDrop();
 
 	    if (!didDrop) {
-	    	props.moveCart(droppedId, originalIndex);
+	    	props.moveCard(droppedId, originalIndex);
 	    }
 	},
 };
 
-const cartTarget = {
+const cardTarget = {
 	canDrop() {
   		return false;
 	},
@@ -35,29 +35,32 @@ const cartTarget = {
 	    const { id: overId } = props;
 
 	    if (draggedId !== overId) {
-	    	const { index: overIndex } = props.findCart(overId);
-	    	props.moveCart(draggedId, overIndex);
+	    	const { index: overIndex } = props.findCard(overId);
+	    	props.moveCard(draggedId, overIndex);
 	    }
 	},
 };
 
-const DSource = DragSource(ItemTypes.CART, cartSource, (connect, monitor) => ({
+const DSource = DragSource(ItemTypes.CARD, cardSource, (connect, monitor) => ({
 	connectDragSource: connect.dragSource(),
 	isDragging: monitor.isDragging(),
 }));
 
-const DTarget = DropTarget(ItemTypes.CART, cartTarget, connect => ({
+const DTarget = DropTarget(ItemTypes.CARD, cardTarget, connect => ({
 	connectDropTarget: connect.dropTarget(),
 }));
 
-class Cart extends React.Component {
+class Card extends React.Component {
 	render() {
 		const { isDragging, connectDragSource, connectDropTarget } = this.props;
 	    return connectDragSource(connectDropTarget(
-	    	<div className="cart">
+	    	<div className="card">
 	    		<Text />
 	    		<EditTextButton />
-	    		<DeleteCartButton />
+	    		<DeleteCardButton
+	    			cardId={this.props.id}
+	    			columnId={this.props.columnId}
+	    		/>
 	    	</div>
 	    ));
 	}
@@ -70,4 +73,4 @@ export default connect(
 	dispatch => ({
 
 	})
-)(DTarget(DSource(Cart)));
+)(DTarget(DSource(Card)));

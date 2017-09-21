@@ -19,6 +19,7 @@ class Columns extends React.Component {
 		let column = {
 			id: '',
 			title: '',
+			cards: []
 		};
 
 		if (storageColumns === null || !storageColumns[0]) {

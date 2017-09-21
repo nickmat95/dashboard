@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import DeleteColumnButton from './Delete-column-button/Delete-column-button.jsx';
 import ColumnTitle from './Column-title/Column-title.jsx';
-import AddCartButton from './Add-cart-button/Add-cart-button.jsx';
-import CartsList from './Carts-list/Carts-list.jsx';
+import AddCardButton from './Add-card-button/Add-card-button.jsx';
+import CardsList from './Cards-list/Cards-list.jsx';
 import { DragSource, DropTarget } from 'react-dnd';
 import ItemTypes from '../../../../item-types.js';
 import './Column.css';
@@ -61,8 +61,14 @@ class Column extends React.Component {
 	    			title={this.props.title} 
 	    			columnId={this.props.id}
 	    		/>
-	    		<CartsList />
-	    		<AddCartButton />
+	    		<CardsList
+	    			columnId={this.props.id}
+	    			cardsList={this.props.cardsList}
+	    		/>
+	    		<AddCardButton
+	    			columnId={this.props.id}
+	    			cardsList={this.props.cardsList}
+	    		/>
 	    	</div>
 	    ));
 	}
