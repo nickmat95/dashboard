@@ -10,15 +10,18 @@ class ColumnTitle extends React.Component {
 	    super(props);
 
 	    this.state = {
-	    	editButtonState: ''
+	    	editButtonState: (this.props.title) ? 'edit' : 'save',
+	    	changedTitle: this.props.title
 	    };
 
 	    this.getEditButtonState = this.getEditButtonState.bind(this);
+	    this.getChangedTitle = this.getChangedTitle.bind(this);
 	}
 
-	componentDidMount() {
+
+	getChangedTitle(state) {
 		this.setState({
-			editButtonState: (this.props.title) ? 'edit' : 'save'
+			changedTitle: state
 		});
 	}
 
@@ -32,11 +35,15 @@ class ColumnTitle extends React.Component {
 	    return (
 	    	<div className="columnTitle">
 	    		<Title
+	    			columnId={this.props.columnId}
 	    			editButtonState={this.state.editButtonState}
 	    			title={this.props.title} 
+	    			getChangedTitle={this.getChangedTitle}
 	    		/>
 	    		<EditTitleButton
 	    			getEditButtonState={this.getEditButtonState}
+	    			title={this.state.changedTitle}
+	    			defaultTitle={this.props.title}
 	    			columnId={this.props.columnId}
 	    		/>
 	    	</div>

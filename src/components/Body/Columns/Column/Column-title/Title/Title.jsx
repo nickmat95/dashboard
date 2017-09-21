@@ -14,10 +14,6 @@ class Title extends React.Component {
 	    this.changeTitle = this.changeTitle.bind(this);
 	}
 
-	componentDidMount() {
-		this.props.getChangedTitle(this.state.value);
-	}
-
 	changeTitle(event) {
 		let title = event.target.value;
 
@@ -31,7 +27,7 @@ class Title extends React.Component {
 	render() {
 	    return (
 	    	<div className="columnTitleText">
-	    		<input type="text" value={this.state.value} onChange={this.changeTitle} disabled={this.props.editButtonState === 'edit'} />
+	    		<input type="text" value={this.state.value} onChange={this.changeTitle} disabled={this.props.editButtonState === 'edit' && this.props.title} />
 	    	</div>
 	    );
 	}
@@ -42,6 +38,6 @@ export default connect(
 
 	}),
 	dispatch => ({
-		getChangedTitle: (item) => dispatch({ type: 'GET_CHANGED_TITLE', payload: item }),
+
 	})
 )(Title);

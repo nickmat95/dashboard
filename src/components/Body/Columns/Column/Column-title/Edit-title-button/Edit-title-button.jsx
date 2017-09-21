@@ -10,7 +10,7 @@ class EditTitleButton extends React.Component {
 	    this.editTitle = this.editTitle.bind(this);
 
 	    this.state = {
-	    	type: 'edit',
+	    	type: (this.props.defaultTitle) ? 'edit' : 'save',
 	    };
 	}
 
@@ -29,7 +29,7 @@ class EditTitleButton extends React.Component {
 
 			storageColumns.forEach((item, i, arr) => {
 				if (item.id === Number(this.props.columnId)) {
-					item.title = this.props.changedTitle
+					item.title = this.props.title
 				}
 			});
 
@@ -40,15 +40,12 @@ class EditTitleButton extends React.Component {
 	}
 
 	render() {
-		let value;
-		if (this.props.changedTitle) {
-			value = (this.state.type === 'edit') ? 'edit' : 'save';
-		} else {
-			value = 'save';
-		}
+
+		let value = (!this.props.defaultTitle) ? 'save' : ((this.props.title) ? ((this.state.type === 'edit') ? 'edit' : 'save') : 'save');
+		
 	    return (
 	    	<div className="editTitle">
-	    		<button type="button" disabled={!this.props.changedTitle} onClick={this.editTitle}>{value}</button>
+	    		<button type="button" disabled={!this.props.title} onClick={this.editTitle}>{value}</button>
 	    	</div>
 	    );
 	}
@@ -56,7 +53,7 @@ class EditTitleButton extends React.Component {
 
 export default connect(
 	state => ({
-		changedTitle: state.getChangedTitle
+
 	}),
 	dispatch => ({
 		getColumnsList: (item) => dispatch({ type: 'GET_COLUMNS', payload: item }),
