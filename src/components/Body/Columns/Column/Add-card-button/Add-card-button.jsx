@@ -14,7 +14,7 @@ class AddCardButton extends React.Component {
 
 		let card = {
 			id: '',
-			title: '',
+			text: '',
 		};
 
 		if (!this.props.cardsList[0]) {
