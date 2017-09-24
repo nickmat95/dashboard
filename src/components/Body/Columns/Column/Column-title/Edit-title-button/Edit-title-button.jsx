@@ -27,6 +27,14 @@ class EditTitleButton extends React.Component {
 		if (buttonType === 'edit') {
 			let storageColumns = JSON.parse(localStorage.getItem('columns'));
 
+			let test = storageColumns;
+
+			let testFun = (element) => {
+				if (element.id === Number(this.props.columnId)) {
+					return element
+				}
+			}
+
 			storageColumns.forEach((item, i, arr) => {
 				if (item.id === Number(this.props.columnId)) {
 					item.title = this.props.title

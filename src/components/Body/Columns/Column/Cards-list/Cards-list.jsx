@@ -57,7 +57,6 @@ class CardsList extends React.Component {
 	}
 
 	render() {
-
 	    const { connectDropTarget } = this.props;
     	const { cards } = this.state;
 
@@ -68,7 +67,7 @@ class CardsList extends React.Component {
 		    			key={card.id}
 			            id={card.id}
 			            columnId={this.props.columnId}
-			            text={this.props.cardsList[card.id].text}
+			            text={(this.props.cardsList[card.id]) ? this.props.cardsList[card.id].text : ''}
 			            moveCard={this.moveCard}
 			            findCard={this.findCard}
 	    			/>
