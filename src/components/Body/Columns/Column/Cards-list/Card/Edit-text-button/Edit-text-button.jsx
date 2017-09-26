@@ -35,7 +35,13 @@ class EditTextButton extends React.Component {
 		if (buttonType === 'edit' && this.props.columnId === this.props.changedText.columnId && this.props.cardId === this.props.changedText.cardId) {
 			let storageColumns = JSON.parse(localStorage.getItem('columns'));
 
-			let storageCards = storageColumns[this.props.columnId].cards;
+			let columnsList = Object.assign([], storageColumns);
+
+			let getCurrentColumn = (element, index, array) => element.id === this.props.columnId;
+
+			let currentColumn = columnsList.find(getCurrentColumn);
+
+			let storageCards = currentColumn.cards;
 
 			storageCards.forEach((item, i, arr) => {
 				if (item.id === Number(this.props.cardId)) {

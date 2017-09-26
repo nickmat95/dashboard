@@ -74,6 +74,8 @@ class CardsList extends React.Component {
 	    const { connectDropTarget } = this.props;
     	const { cards } = this.state;
 
+    	//console.log('>>', cards);
+
 	    return connectDropTarget(
 	    	<div className="cardsList">
 	    		{cards.map(card => {

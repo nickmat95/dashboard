@@ -13,7 +13,13 @@ class DeleteCardButton extends React.Component {
 	deleteCard() {
 		let storageColumns = JSON.parse(localStorage.getItem('columns'));
 
-		let storageCards = storageColumns[this.props.columnId].cards;
+		let columnsList = Object.assign([], storageColumns);
+
+		let getCurrentColumn = (element, index, array) => element.id === this.props.columnId;
+
+		let currentColumn = columnsList.find(getCurrentColumn);
+
+		let storageCards = currentColumn.cards;
 
 		let newCardsList = storageCards.filter((card) => card.id !== Number(this.props.cardId));
 
