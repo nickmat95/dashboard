@@ -21,13 +21,19 @@ class Title extends React.Component {
 			value: title
 		});
 
-		this.props.getChangedTitle(title);
+		this.props.getChangedColumnTitle(title, this.props.columnId);
 	}
 
 	render() {
+		let editButtonState = (this.props.title) ? 'edit' : 'save';
+
+		if (this.props.columnId === this.props.editButtonState.columnId && this.props.editButtonState.state) {
+			editButtonState = this.props.editButtonState.state;
+		}
+
 	    return (
 	    	<div className="columnTitleText">
-	    		<input type="text" value={this.state.value} onChange={this.changeTitle} disabled={this.props.editButtonState === 'edit' && this.props.title} />
+	    		<input type="text" value={this.state.value} onChange={this.changeTitle} disabled={editButtonState === 'edit' && this.props.title} />
 	    	</div>
 	    );
 	}
@@ -35,9 +41,9 @@ class Title extends React.Component {
 
 export default connect(
 	state => ({
-
+		editButtonState: state.getColumnEditButtonState
 	}),
 	dispatch => ({
-
+		getChangedColumnTitle: (title, columnId) => dispatch({ type: 'GET_CHANEGED_TITLE', title, columnId }),
 	})
 )(Title);

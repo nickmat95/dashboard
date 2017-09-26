@@ -51,31 +51,6 @@ const DTarget = DropTarget(ItemTypes.CARD, cardTarget, connect => ({
 }));
 
 class Card extends React.Component {
-
-	constructor(props) {
-	    super(props);
-
-	    this.state = {
-	    	editButtonState: (this.props.text) ? 'edit' : 'save',
-	    	changedText: this.props.text
-	    };
-
-	    this.getEditButtonState = this.getEditButtonState.bind(this);
-	    this.getChangedText = this.getChangedText.bind(this);
-	}
-
-	getChangedText(state) {
-		this.setState({
-			changedText: state
-		});
-	}
-
-	getEditButtonState(state) {
-		this.setState({
-			editButtonState: state
-		});
-	}
-
 	render() {
 		const { isDragging, connectDragSource, connectDropTarget } = this.props;
 	    return connectDragSource(connectDropTarget(
@@ -83,13 +58,10 @@ class Card extends React.Component {
 	    		<Text
 	    			columnId={this.props.columnId}
 	    			cardId={this.props.id}
-	    			editButtonState={this.state.editButtonState}
 	    			text={this.props.text}
 	    			getChangedText={this.getChangedText}
 	    		/>
 	    		<EditTextButton
-	    			getEditButtonState={this.getEditButtonState}
-	    			text={this.state.changedText}
 	    			defaultText={this.props.text}
 	    			columnId={this.props.columnId}
 	    			cardId={this.props.id}
