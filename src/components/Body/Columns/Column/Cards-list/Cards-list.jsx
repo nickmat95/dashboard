@@ -76,16 +76,16 @@ class CardsList extends React.Component {
 
 	    return connectDropTarget(
 	    	<div className="cardsList">
-	    		{cards.map(card => (
-	    			<Card
+	    		{cards.map(card => {
+	    			return(<Card
 		    			key={card.id}
 			            id={card.id}
 			            columnId={this.props.columnId}
 			            text={(card.text) ? card.text : ''}
 			            moveCard={this.moveCard}
 			            findCard={this.findCard}
-	    			/>
-	    		))}
+	    			/>)
+	    		})}
 	    	</div>
 	    );
 	}

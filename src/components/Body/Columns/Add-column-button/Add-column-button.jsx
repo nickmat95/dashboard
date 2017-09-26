@@ -12,7 +12,7 @@ class Columns extends React.Component {
 
 	addColumn() {
 
-		let storageColumns = JSON.parse(localStorage.getItem('columns'));
+		const storageColumns = JSON.parse(localStorage.getItem('columns'));
 
 		let columnsList = [];
 
@@ -26,8 +26,15 @@ class Columns extends React.Component {
 			column.id = 0;
 			columnsList = [column];
 		} else {
-			let lastElement = storageColumns.length - 1;
-			let lastId = storageColumns[lastElement].id;
+
+			let sortStorageColumns = Object.assign([], storageColumns);
+
+			let sortColumns = (a, b) => a.id - b.id;
+
+			sortStorageColumns.sort(sortColumns);
+
+			let lastElement = sortStorageColumns.length - 1;
+			let lastId = sortStorageColumns[lastElement].id;
 			let newId = Number(lastId) + 1;
 
 			column.id = newId;

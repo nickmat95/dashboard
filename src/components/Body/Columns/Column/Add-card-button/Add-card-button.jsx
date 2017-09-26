@@ -20,8 +20,15 @@ class AddCardButton extends React.Component {
 		if (!this.props.cardsList[0]) {
 			card.id = 0;
 		} else {
-			let lastElement = this.props.cardsList.length - 1;
-			let lastId = this.props.cardsList[lastElement].id;
+
+			let cardsList = Object.assign([], this.props.cardsList);
+
+			let sortCards = (a, b) => a.id - b.id;
+
+			cardsList.sort(sortCards);
+
+			let lastElement = cardsList.length - 1;
+			let lastId = cardsList[lastElement].id;
 			let newId = Number(lastId) + 1;
 
 			card.id = newId;
