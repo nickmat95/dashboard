@@ -67,7 +67,7 @@ class CardsList extends React.Component {
 		    			key={card.id}
 			            id={card.id}
 			            columnId={this.props.columnId}
-			            text={(this.props.cardsList[card.id]) ? this.props.cardsList[card.id].text : ''}
+			            text={(card.text) ? card.text : ''}
 			            moveCard={this.moveCard}
 			            findCard={this.findCard}
 	    			/>
